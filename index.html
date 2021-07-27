@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/flashes.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="scrollbar"></div>
+    <div class="scrollbarOverlay"></div>
+
+    <div id="title">Let's start</div>
+    <div id="warning">Now choose one from 3 options.</div>
+    <div id="description">Choose an object.</div>
+
+    <div id="buttons">
+        <div class="border inset_shadow" id="b_0" onclick="changeInfo(0, 'reduce')">
+            <div class="inside"></div>
+            <p class="text">Reduce</p>
+        </div>
+
+        <div class="border inset_shadow" id="b_1" onclick="changeInfo(1, 'reuse')">
+            <div class="inside"></div>
+            <p class="text">Reuse</p>
+        </div>
+
+        <div class="border inset_shadow" id="b_2" onclick="changeInfo(2, 'recycle')">
+            <div class="inside"></div>
+            <p class="text">Recycle</p>
+        </div>
+    </div>
+
+    <div class="flash" id="red">
+		<div></div>
+		<div></div>
+	</div>
+	<div class="flash" id="green">
+		<div></div>
+		<div></div>
+	</div>
+
+    <script src="scripts/config.js"></script>
+    <script src="scripts/parser.js"></script>
+    <script src="scripts/view.js"></script>
+    <script src="scripts/flow.js"></script>
+</body>
+
+</html>

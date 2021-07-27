@@ -1,0 +1,275 @@
+@font-face{
+    font-family: Fedra;
+    src: url('../fonts/FedraSansAltPro/FedraSansAltPro-Medium.otf');
+}
+
+@font-face{
+    font-family: FedraBook;
+    src: url('../fonts/FedraSansAltPro/FedraSansAltPro-Book.otf');
+}
+
+@font-face{
+    font-family: FedraDemi;
+    src: url('../fonts/FedraSansAltPro/FedraSansAltPro-Demi.otf');
+}
+
+@font-face{
+    font-family: FedraBold;
+    src: url('../fonts/FedraSansAltPro/FedraSansAltPro-Bold.otf');
+}
+
+body {
+    background: #F3F3F3;
+    width: 900px;
+    height: 550px;
+    overflow: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.question p {
+    font-family: Fedra;
+    font-size: 20px;
+    color: #436980;
+    line-height: 29px;
+    width: 560px;
+    text-align: center;
+}
+
+.question {
+    position: absolute;
+    top: 223px;
+    left: 171px;
+    transition: 1s;
+}
+
+.checkmark {
+    width: 22px !important;
+    height: 16px !important;
+    top: 11px !important;
+    left: 8px !important;
+}
+
+#play {
+    transition: 1s;
+	background: #F3F3F3;
+	width: 37px;
+	height: 37px;
+	box-shadow: 2px -1px 2px 0 #FEFEFE, -1px 2px 2px 0 rgba(0,0,0,0.16);
+	border-radius: 100%;
+    cursor: pointer;
+
+	position: fixed;
+    top: 0;
+    margin-top: 450px;
+	left: 431px;
+}
+
+.icon {
+    position: absolute;
+    width: 17px;
+    height: 14px;
+    top: 12px;
+    left: 12px;
+}
+
+#play svg {
+    transition: 0.5s;
+    width: 100%;
+    height: 100%;
+}
+
+.hoverable:hover svg {
+	opacity: 0.5;
+}
+
+.circle {
+    box-shadow: -1px 1px 1px 0 rgba(254,254,254,0.48);
+    height: 31.08px;
+    width: 31.08px;
+    border-radius: 100%;
+
+    position: absolute;
+    top: 3px;
+    left: 3px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.outcome {
+    transition: 1s;
+    height: 451px;
+    width: 705px;
+    border-radius: 19px;
+    box-shadow: inset -2px -2px 5px 0 #FFFFFF, inset 2px 3px 3px 1px rgba(222,222,230,0.72);
+    position: absolute;
+    left: 99px;
+    top: 48px;
+    padding: 17px;
+    display: none;
+    overflow: hidden;
+}
+
+.scrollbar, .scrollbarOverlay {
+    left: 72px;
+    font-family: FedraBold;
+    font-size: 40px;
+    color: #5C7CA6;
+
+    position: absolute;
+    height: 125px;
+    width: 756px;
+    border-radius: 19px;
+    top: 265px;
+    scroll-behavior: smooth;
+    overflow: hidden
+}
+
+.scrollbarOverlay {
+    box-shadow: inset -2px -2px 5px 0 #FFFFFF, inset 2px 3px 3px 1px rgba(222,222,230,0.72);
+    pointer-events: none;
+}
+
+.innerCircle {
+    transition: 0.2s;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    background-color: #F3F3F3;
+    box-shadow: 5px 5px 5px 0 rgba(222,222,230,0.5), -3px -3px 5px 0 #FEFEFE;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block {
+    transition: 0.4s;
+    top: 18.5px;
+    overflow: hidden;
+    position: absolute;
+    height: 88px;
+    width: 88px;
+    border-radius: 19px;
+    background-color: #F3F3F3;
+    box-shadow: 5px 5px 5px 0 rgb(222 222 230 / 50%), -3px -3px 5px 0 #fefefe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.block:hover img {
+    opacity: 0.6;
+}
+
+.scrollbar div img {
+    transition: 0.2s;
+    width:  76px;
+    height: 76px;
+}
+
+#buttons {
+    display: flex;
+    position: absolute;
+    left: 72px;
+    top: 442px;
+}
+
+.border {
+    font-family: Fedra;
+    color: rgba(222,222,230,0.5);
+    font-size: 35px;    
+    height: 88px;
+    width: 199px;
+    border-radius: 19px;
+    margin-right: 80px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.inside {
+    height: 82px;
+    width: 192px;
+    border-radius: 16px;
+    box-shadow: inset -3px -3px 5px 0 #fefefe, inset 3px 3px 5px 0 rgb(222 222 230 / 50%);
+    position: absolute;
+    transition: 0.2s;
+}
+
+.text {
+    width: 127px;
+    color: rgba(222,222,230,0.5);
+    font-family: Fedra;
+    font-size: 33px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 44px;
+    text-align: center;
+    transition: 0.2s;
+}
+
+#title {
+    font-family: FedraBold;
+    font-size: 35px;
+    width: 743px;
+    position: absolute;
+    top: 43px;
+    left: 80px;
+    text-align: center;
+    color: #5C7CA6;
+}
+
+#description {
+    font-family: FedraBook;
+    font-size: 18px;
+    width: 743px;
+    position: absolute;
+    left: 80px;
+    top: 100px;
+    text-align: center;
+    color: #5C7CA6;
+}
+
+#warning {
+    font-family: Fedra;
+    position: absolute;
+    top: 401px;
+    left: 80px;
+    color: #EA6166;
+    width: 743px;
+    font-size: 20px;
+    text-align: center;
+    transition: 1.5s;
+    opacity: 0;
+}
+
+.row {
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    margin-top: 22px;
+}
+
+.row:first-of-type {
+    margin: 0;
+}
+
+.bar {
+    height: 5px;
+    width: 187px;
+    border-radius: 19px;
+    box-shadow: inset -2px -2px 5px 0 #FFFFFF, inset 2px 3px 3px 1px rgba(222,222,230,0.72);
+    position: absolute;
+    top: 42.5px;
+}
