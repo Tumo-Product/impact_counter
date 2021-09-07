@@ -3,7 +3,7 @@ const timeout = (ms) => {
 }
 
 let data;
-let currentIcon = 0;
+let currentIcon = 1;
 let scrolling   = false;
 let dontScroll  = false;
 let positions   = [];
@@ -31,7 +31,7 @@ const onPageLoad = async () => {
     }
 
 
-    currentIcon = Math.floor(Math.random() * data.length - 1);
+    // currentIcon = Math.floor(Math.random() * data.length - 1);
 
     view.addCurrent(getIcon(currentIcon).url);
 
