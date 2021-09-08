@@ -207,7 +207,7 @@ body {
 }
 
 .text {
-    width: 127px;
+    /* width: 127px; */
     color: rgba(222,222,230,0.5);
     font-family: Fedra;
     font-size: 33px;
