@@ -25,7 +25,7 @@ const view = {
         return i;
     },
     toggleButton: (i) => {
-        if (activeIcon == -1) return -1;
+        if ($(".block.inset_shadow").length === 0) return -1;
 
         if (activeButton < 0) {
             $(`#b_${i}`).removeClass("inset_shadow");
@@ -72,11 +72,11 @@ const view = {
         if (amount == 0) return;
         scrolling = true;
 
-        let current    = $(".current").index();
-        let difference = 7 - current - amount;
+        let currentElem = $(".current").index();
+        let difference = 7 - currentIcon - amount;
 
         $(".current").removeClass("current");
-        $(`#${current - amount}`).addClass("current");
+        $(`#${currentElem - amount}`).addClass("current");
 
         $(".scrollbar div").each(function(i) {
             $(this).css("left", amount > 0 ? `+=${amount * view.offset}` : `-=${Math.abs(amount) * view.offset}`);
@@ -84,8 +84,7 @@ const view = {
 
         await timeout(50);
 
-        current = $(".current").index();
-
+        currentElem = $(".current").index();
         let length = $(".block").length;
 
         for (let i = 1; i <= Math.abs(amount); i++) {
@@ -94,16 +93,26 @@ const view = {
 
             $(`#${remove}`).remove();
 
-            let id       = remove < current ? length + zeroedIndex          : -1 - zeroedIndex;
-            let pos      = remove < current ? length + amount + zeroedIndex : amount - i;
-            let icon     = remove < current ? currentIcon - difference - i  : currentIcon + difference + i;
+            let id       = remove < currentElem ? length + zeroedIndex          : -1 - zeroedIndex;
+            let pos      = remove < currentElem ? length + amount + zeroedIndex : amount - i;
+            
+            let icon;
+            if (amount == -1 || amount == 1) {
+                icon     = remove < currentElem ? difference + amount - i       : difference + amount + i;
+            }
+            else if (amount == -2 || amount == 2) {
+                icon     = remove < currentElem ? difference - amount + i + 3   : difference - amount - i - 3;
+            }
+            else if (amount == -3 || amount == 3) {
+                icon     = remove < currentElem ? difference - amount + i       : difference - amount - i;
+            }
 
             view.addIcon(id, getIcon(icon).url, -amount);
             
             if (Math.abs(amount) == 1) {
                 view.setPosition(id, positions[pos]);
             } else {
-                let newPos = remove < current ? positions[pos] + (view.offset * i + 15) : positions[pos] - (view.offset * i);
+                let newPos = remove < currentElem ? positions[pos] + (view.offset * i + 15) : positions[pos] - (view.offset * i);
                 view.setPosition(id, newPos);
                 await timeout(50);
                 view.setPosition(id, positions[pos]);
