@@ -128,7 +128,13 @@ body {
     border-radius: 19px;
     top: 265px;
     scroll-behavior: smooth;
-    overflow: hidden
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
 }
 
 .scrollbarOverlay {
@@ -174,12 +180,30 @@ body {
     width:  76px;
     height: 76px;
 }
-
-#buttons {
-    display: flex;
+#firstButtons {
+    display: none;
     position: absolute;
     left: 72px;
     top: 442px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
+}
+
+#secondButtons {
+    display: none;
+    position: absolute;
+    left: 72px;
+    top: 561px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
 }
 
 .border {
@@ -227,6 +251,12 @@ body {
     left: 80px;
     text-align: center;
     color: #5C7CA6;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
 }
 
 #description {
@@ -238,6 +268,12 @@ body {
     top: 100px;
     text-align: center;
     color: #5C7CA6;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
 }
 
 #warning {
@@ -251,6 +287,12 @@ body {
     text-align: center;
     transition: 1.5s;
     opacity: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
 }
 
 .row {
