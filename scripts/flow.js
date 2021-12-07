@@ -3,6 +3,7 @@ const timeout = (ms) => {
 }
 
 let data;
+let textButtons;
 let currentIcon = 1;
 let scrolling   = false;
 let dontScroll  = false;
@@ -21,15 +22,24 @@ jQuery.event.special.wheel = {
 
 const onPageLoad = async () => {
     data = await parser.dataFetch();
+    textButtons = data.data.data.texts;
     data = data.data.data;
-
+    
     if (data != undefined) {
         data = data.elements;
+        
     } else {
         console.log("Uid not available");
         return;
     }
-
+    if (textButtons === undefined) {
+        $(`#firstButtons`).css("display", "flex");
+        $(`#secondButtons`).css("display", "none");
+    } 
+    else {
+        $(`#firstButtons`).css("display", "flex");
+        $(`#secondButtons`).css("display", "flex");
+    }
 
     // currentIcon = Math.floor(Math.random() * data.length - 1);
 
@@ -39,7 +49,6 @@ const onPageLoad = async () => {
     if (sidesCount > 4) {
         sidesCount = 4;
     }
-    
     for (let i = 1; i <= sidesCount; i++) {
         view.addOthers( 1, i, getIcon(currentIcon + i).url);
         view.addOthers(-1, i, getIcon(currentIcon - i).url);
@@ -74,10 +83,17 @@ const changeInfo = (i, infoType) => {
 }
 
 const flashWarning = async (length) => {
+    if (textButtons === undefined) {
+        $("#warning").text(`Maintenant choisis l'une des 3 options.`);
+    } 
+    else {
+        $("#warning").text(`Maintenant choisis l'une des 6 options.`);
+    }
+    
     for (let i = 0; i < length; i++) {
         await view.flashWarning();
     }
-
+    
     $("#warning").css("opacity", 1);
 }
 
@@ -91,13 +107,13 @@ const wheel = async (e) => {
 }
 
 const scrollHere = async(i) => {
+    $(`.scrollbar`).css("pointer-events", "none").prop("disabled", true);
     activeButton = view.toggleButton(activeButton);
-    activeIcon = view.activateIcon(i);
+    activeIcon = view.activateIcon(i) - currentIcon - 2;
 
     if (!dontScroll) {
         let amount = -(i - $(".current").index());
         currentIcon += amount;
-
         await view.scroll(amount);
     }
 
@@ -108,6 +124,10 @@ const scrollHere = async(i) => {
 
     view.updateTitle      (getIcon(activeIcon).title);
     view.updateDescription(getIcon(activeIcon).description);
+
+    setTimeout(() => {
+        $(`.scrollbar`).css("pointer-events", "auto").removeAttr("disabled");
+    }, 200);
 }
 
 const getIcon = (newIndex) => {
@@ -119,7 +139,6 @@ const getIcon = (newIndex) => {
     else if (newIndex > data.length) {
         newIndex = 0;
     }
-
     return data[newIndex];
 }
 
