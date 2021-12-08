@@ -65,7 +65,6 @@ const onPageLoad = async () => {
 
     $(".scrollbar").on('wheel', async function (e) {
         if (scrolling) {
-            console.log("scrolling");
             return;
         }
         if (!scrolling) {
