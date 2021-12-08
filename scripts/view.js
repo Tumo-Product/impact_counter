@@ -69,7 +69,7 @@ const view = {
         }
     },
     scroll: async (amount) => {
-        $(`.scrollbar`).css("pointer-events", "none").prop("disabled", true);
+        
         if (amount == 0) return;
 
         let currentElem = $(".current").index();
@@ -82,6 +82,8 @@ const view = {
             $(this).css("left", amount > 0 ? `+=${amount * view.offset}` : `-=${Math.abs(amount) * view.offset}`);
         });
 
+        $(`.scrollbar`).css("pointer-events", "none").prop("disabled", true);
+        
         await timeout(20);
 
         currentElem = $(".current").index();
