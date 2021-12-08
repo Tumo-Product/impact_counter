@@ -63,7 +63,20 @@ const onPageLoad = async () => {
         return;
     }
 
-    $(".scrollbar").on('wheel', async function (e) { await wheel(e) });
+    $(".scrollbar").on('wheel', async function (e) {
+        if (scrolling) {
+            console.log("scrolling");
+            return;
+        }
+        if (!scrolling) {
+            scrolling = true;
+            wheel(e);
+        }
+
+        setTimeout(() => {
+            scrolling = false;
+        }, 500);
+    });
 }
 
 const changeInfo = (i, infoType) => {
@@ -98,36 +111,36 @@ const flashWarning = async (length) => {
 }
 
 const wheel = async (e) => {
-    if (!scrolling) {
-        let dir = -Math.sign(e.originalEvent.wheelDelta);
-        currentIcon += dir;
-
-        await view.scroll(dir);
-    }
+    let dir = -Math.sign(e.originalEvent.wheelDelta);
+    currentIcon += dir;
+    await view.scroll(dir);
 }
 
 const scrollHere = async(i) => {
-    $(`.scrollbar`).css("pointer-events", "none").prop("disabled", true);
-    activeButton = view.toggleButton(activeButton);
-    activeIcon = view.activateIcon(i) - currentIcon - 2;
+    if (!scrolling) {
+        scrolling = true;
 
-    if (!dontScroll) {
-        let amount = -(i - $(".current").index());
-        currentIcon += amount;
-        await view.scroll(amount);
+        activeButton = view.toggleButton(activeButton);
+        activeIcon = view.activateIcon(i) - currentIcon - 2;
+
+        if (!dontScroll) {
+            let amount = -(i - $(".current").index());
+            currentIcon += amount;
+            await view.scroll(amount);
+        }
+
+        if (!flashDone) {
+            flashWarning(1);
+            flashDone = true;
+        }
+
+        view.updateTitle      (getIcon(activeIcon).title);
+        view.updateDescription(getIcon(activeIcon).description);
     }
-
-    if (!flashDone) {
-        flashWarning(1);
-        flashDone = true;
-    }
-
-    view.updateTitle      (getIcon(activeIcon).title);
-    view.updateDescription(getIcon(activeIcon).description);
 
     setTimeout(() => {
-        $(`.scrollbar`).css("pointer-events", "auto").removeAttr("disabled");
-    }, 200);
+        scrolling = false;
+    }, 500);
 }
 
 const getIcon = (newIndex) => {

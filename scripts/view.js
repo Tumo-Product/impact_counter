@@ -70,7 +70,6 @@ const view = {
     },
     scroll: async (amount) => {
         if (amount == 0) return;
-        scrolling = true;
 
         let currentElem = $(".current").index();
         let difference = 7 - currentIcon - amount;
@@ -112,16 +111,15 @@ const view = {
             if (Math.abs(amount) == 1) {
                 view.setPosition(id, positions[pos]);
             } else {
-                let newPos = remove < currentElem ? positions[pos] + (view.offset * i + 15) : positions[pos] - (view.offset * i);
+                let newPos = remove < currentElem ? positions[pos] + view.offset * 2 : positions[pos] - view.offset * 2;
                 view.setPosition(id, newPos);
-                await timeout(50);
+                await timeout(30);
                 view.setPosition(id, positions[pos]);
             }
         }
 
         await timeout(200);
         view.resetIds();
-        scrolling = false;
     },
     addIcon: (id, img, dir) => {
         if (dir > 0) {
