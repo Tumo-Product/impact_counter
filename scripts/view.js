@@ -69,8 +69,9 @@ const view = {
         }
     },
     scroll: async (amount) => {
-        
         if (amount == 0) return;
+
+        $(`.scrollbar`).css("pointer-events", "none").prop("disabled", true);
 
         let currentElem = $(".current").index();
         let difference = 7 - currentIcon - amount;
@@ -81,8 +82,6 @@ const view = {
         $(".scrollbar div").each(function(i) {
             $(this).css("left", amount > 0 ? `+=${amount * view.offset}` : `-=${Math.abs(amount) * view.offset}`);
         });
-
-        $(`.scrollbar`).css("pointer-events", "none").prop("disabled", true);
         
         await timeout(20);
 
