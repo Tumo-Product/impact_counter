@@ -124,7 +124,7 @@ const view = {
 
         setTimeout(() => {
             $(`.scrollbar`).css("pointer-events", "auto").prop("disabled", false);
-        }, 500);
+        }, 200);
     },
     addIcon: (id, img, dir) => {
         if (dir > 0) {
