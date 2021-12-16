@@ -1,5 +1,3 @@
-axios.defaults.baseURL = "https://blackboxbasic.herokuapp.com/";
-
 const parser = {
     dataFetch: async () => {
         let  url	= new URL(document.location.href);
