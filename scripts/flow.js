@@ -32,50 +32,54 @@ const onPageLoad = async () => {
         console.log("Uid not available");
         return;
     }
-    if (textButtons === undefined) {
-        $(`#firstButtons`).css("display", "flex");
-        $(`#secondButtons`).css("display", "none");
-    } 
-    else {
-        $(`#firstButtons`).css("display", "flex");
-        $(`#secondButtons`).css("display", "flex");
+
+    $(`#firstButtons`).css("display", "flex");
+    $(`#secondButtons`).css("display", textButtons === undefined ? "none" : "flex");
+    if (textButtons !== undefined) {
+        $("body").addClass("sixR");
+        await timeout(1000);
     }
 
     // currentIcon = Math.floor(Math.random() * data.length - 1);
 
-    view.addCurrent(getIcon(currentIcon).url);
-
     let sidesCount = Math.floor((data.length - 1) / 2);
-    if (sidesCount > 4) {
-        sidesCount = 4;
-    }
-    for (let i = 1; i <= sidesCount; i++) {
-        view.addOthers( 1, i, getIcon(currentIcon + i).url);
-        view.addOthers(-1, i, getIcon(currentIcon - i).url);
-    }
-
-    $(".block").each(function (i) {
-        positions[i] = $(this).position().left;
-    });
-
     if (sidesCount < 4) {
         dontScroll = true;
-        return;
+
+        for (let i = 0; i < data.length; i++) {
+            view.addIcon(i, data[i].url, 1);
+        }
+    } else {
+        view.addCurrent(getIcon(currentIcon).url);
+
+        if (sidesCount > 4) {
+            sidesCount = 4;
+        }
+        for (let i = 1; i <= sidesCount; i++) {
+            view.addOthers( 1, i, getIcon(currentIcon + i).url);
+            view.addOthers(-1, i, getIcon(currentIcon - i).url);
+        }
+    
+        $(".block").each(function (i) {
+            positions[i] = $(this).position().left;
+        });
+    
+        $(".scrollbar").on('wheel', async function (e) {
+            if (scrolling) {
+                return;
+            }
+            if (!scrolling) {
+                scrolling = true;
+                wheel(e);
+            }
+    
+            setTimeout(() => {
+                scrolling = false;
+            }, 500);
+        });
     }
 
-    $(".scrollbar").on('wheel', async function (e) {
-        if (scrolling) {
-            return;
-        }
-        if (!scrolling) {
-            scrolling = true;
-            wheel(e);
-        }
-
-        setTimeout(() => {
-            scrolling = false;
-        }, 500);
-    });
+    loader.toggle();
 }
 
 const changeInfo = (i, infoType) => {
@@ -120,8 +124,7 @@ const scrollHere = async(i) => {
         scrolling = true;
 
         activeButton = view.toggleButton(activeButton);
-        activeIcon = view.activateIcon(i) - currentIcon - 2;
-
+        activeIcon  = dontScroll ? view.activateIcon(i) : view.activateIcon(i) - currentIcon - 2;
         if (!dontScroll) {
             let amount = -(i - $(".current").index());
             currentIcon += amount;
@@ -133,8 +136,9 @@ const scrollHere = async(i) => {
             flashDone = true;
         }
 
-        view.updateTitle      (getIcon(activeIcon).title);
-        view.updateDescription(getIcon(activeIcon).description);
+        let element = dontScroll ? data[activeIcon] : getIcon(activeIcon);
+        view.updateTitle      (element.title);
+        view.updateDescription(element.description);
     }
 
     setTimeout(() => {

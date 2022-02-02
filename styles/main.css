@@ -129,6 +129,11 @@ body {
     top: 265px;
     scroll-behavior: smooth;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+
     -webkit-touch-callout: none;
     -webkit-user-select: none; 
      -khtml-user-select: none;
@@ -180,30 +185,49 @@ body {
     width:  76px;
     height: 76px;
 }
+
 #firstButtons {
-    display: none;
-    position: absolute;
-    left: 72px;
     top: 442px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none; 
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none; 
 }
 
 #secondButtons {
+    top: 538px;
+}
+
+.sixR .border {
+    width: 233px !important;
+}
+
+.sixR .buttons {
+    gap: 29px !important;
+}
+
+.sixR .scrollbar {
+    top: 262px !important;
+}
+
+.sixR #firstButtons {
+    top: 431px;
+}
+
+.sixR #warning {
+    top: 400px !important;
+}
+
+.buttons {
     display: none;
     position: absolute;
     left: 72px;
-    top: 561px;
+
+    display: flex;
+    justify-content: center;
+    gap: 80px;
     -webkit-touch-callout: none;
     -webkit-user-select: none; 
      -khtml-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
-            user-select: none; 
+            user-select: none;
 }
 
 .border {
@@ -213,17 +237,17 @@ body {
     height: 88px;
     width: 199px;
     border-radius: 19px;
-    margin-right: 80px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: 0.3s;
+    position: relative;
 }
 
 .inside {
     height: 82px;
-    width: 192px;
+    width: 96.482%;
     border-radius: 16px;
     box-shadow: inset -3px -3px 5px 0 #fefefe, inset 3px 3px 5px 0 rgb(222 222 230 / 50%);
     position: absolute;

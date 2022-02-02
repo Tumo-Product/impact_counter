@@ -53,18 +53,16 @@ const view = {
     },
     addCurrent: (img) => {
         $(".scrollbar").append(`<div onclick="scrollHere(4)" class="block current" id="4"><img src="${href + img}"></div>`);
-        $("#4").css("left", `${view.currentPosition}px`);
+        if (!dontScroll) $("#4").css("left", `${view.currentPosition}px`);
+        else {
+            $(`#4`).css({position: "relative", top: 0});
+        }
     },
     addOthers: (dir, i, img) => {
         let id = 4 + (dir * i);
-
-        if (dir > 0) {
-            view.addIcon(id, img, dir);
-            let newPosition = view.currentPosition + (i * view.offset);
-            view.setPosition(id, newPosition);
-        } else {
-            view.addIcon(id, img, dir);
-            let newPosition = view.currentPosition - (i * view.offset);
+        view.addIcon(id, img, dir);
+        if (!dontScroll) {
+            let newPosition = view.currentPosition + (i * view.offset * dir);
             view.setPosition(id, newPosition);
         }
     },
@@ -132,6 +130,10 @@ const view = {
             $(".scrollbar").append (`<div onclick="scrollHere(${id})" class="block" id="${id}"><img src="${href + img}"></div>`);
         } else {
             $(".scrollbar").prepend(`<div onclick="scrollHere(${id})" class="block" id="${id}"><img src="${href + img}"></div>`);
+        }
+
+        if (dontScroll) {
+            $(`#${id}`).css({position: "relative", top: 0});
         }
     },
     setPosition: (id, newPosition) => {
