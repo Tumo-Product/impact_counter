@@ -1,0 +1,63 @@
+.sixR .border {
+    width: 233px !important;
+}
+
+.sixR .buttons {
+    top: 431px;
+    column-gap: 29px !important;
+}
+
+.sixR .scrollbar, .sixR .scrollbarOverlay {
+    top: 257px !important;
+}
+
+.sixR #warning {
+    top: 400px !important;
+}
+
+.iconBasedCounter #warning {
+    top: 359px !important;
+}
+
+.iconBasedCounter .buttons {
+    top: 393px;
+    column-gap: 29px !important;
+}
+
+.iconBasedCounter .scrollbar, .iconBasedCounter .scrollbarOverlay {
+    top: 227px !important;
+}
+
+.iconBasedCounter .border {
+    width: 233px !important;
+    height: 233px !important;
+}
+
+.iconBasedCounter .border:hover .optionImage, .iconBasedCounter .border:hover p {
+    filter: grayscale(0.5);
+    color: rgb(235 215 47 / 33%);
+}
+
+.iconBasedCounter .inside {
+    height: 225px !important;
+}
+
+.iconBasedCounter .text {
+    position: absolute;
+    bottom: 27px;
+}
+
+.iconBasedCounter #title {
+    top: 29px;
+}
+
+.iconBasedCounter #description {
+    top: 75px !important;
+}
+
+.hasIcon.outside_shadow img {
+    bottom: 88px;
+    width: 90px !important;
+    filter: none;
+    opacity: 1 !important;
+}

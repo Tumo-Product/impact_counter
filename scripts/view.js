@@ -24,6 +24,19 @@ const view = {
 
         return i;
     },
+    addOption: async (option, i) => {
+        $(".buttons").append(`
+        <div class="border inset_shadow ${option.key}" id="b_${i}" onclick="changeInfo(${i}, '${option.key}')">
+            <div class="inside"></div>
+            <p class="text">${option.text}</p>
+        </div>`);
+
+        if (option.icon !== undefined) {
+            $("body").addClass("iconBasedCounter");
+            $(`#b_${i}`).prepend(`<img class="optionImage" src="${option.icon}">`);
+            $(`#b_${i}`).addClass("hasIcon");
+        }
+    },
     toggleButton: (i) => {
         if ($(".block.inset_shadow").length === 0) return -1;
 

@@ -3,7 +3,7 @@ const timeout = (ms) => {
 }
 
 let data;
-let textButtons;
+let options;
 let currentIcon = 1;
 let scrolling   = false;
 let dontScroll  = false;
@@ -22,25 +22,17 @@ jQuery.event.special.wheel = {
 
 const onPageLoad = async () => {
     data = await parser.dataFetch();
-    textButtons = data.data.data.texts;
+    options = data.data.data.options;
     data = data.data.data;
     
     if (data != undefined) {
         data = data.elements;
-        
     } else {
         console.log("Uid not available");
         return;
     }
 
-    $(`#firstButtons`).css("display", "flex");
-    $(`#secondButtons`).css("display", textButtons === undefined ? "none" : "flex");
-    if (textButtons !== undefined) {
-        $("body").addClass("sixR");
-        await timeout(1000);
-    }
-
-    // currentIcon = Math.floor(Math.random() * data.length - 1);
+    initOptions(options);
 
     let sidesCount = Math.floor((data.length - 1) / 2);
     if (sidesCount < 4) {
@@ -82,6 +74,16 @@ const onPageLoad = async () => {
     loader.toggle();
 }
 
+const initOptions = (options) => {
+    if (options.length === 6) {
+        $("body").addClass("sixR");
+    }
+
+    for (let i = 0; i < options.length; i++) {
+        view.addOption(options[i], i);
+    }
+}
+
 const changeInfo = (i, infoType) => {
     if (flashDone) {
         $("#warning").css("opacity", 0);
@@ -99,12 +101,7 @@ const changeInfo = (i, infoType) => {
 }
 
 const flashWarning = async (length) => {
-    if (textButtons === undefined) {
-        $("#warning").text(`Maintenant choisis l'une des 3 options.`);
-    } 
-    else {
-        $("#warning").text(`Maintenant choisis l'une des 6 options.`);
-    }
+    $("#warning").text(`Maintenant choisis l'une des ${options.length} options.`);
     
     for (let i = 0; i < length; i++) {
         await view.flashWarning();

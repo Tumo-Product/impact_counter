@@ -176,52 +176,35 @@ body {
     cursor: pointer;
 }
 
+.scrollbar .block img {
+    filter: grayscale(1);
+    opacity: 0.2;
+}
+
 .block:hover img {
-    opacity: 0.6;
+    filter: grayscale(0.5);
+    opacity: 0.3;
 }
 
 .scrollbar div img {
     transition: 0.2s;
-    width:  76px;
-    height: 76px;
-}
-
-#firstButtons {
-    top: 442px;
-}
-
-#secondButtons {
-    top: 538px;
-}
-
-.sixR .border {
-    width: 233px !important;
-}
-
-.sixR .buttons {
-    gap: 29px !important;
-}
-
-.sixR .scrollbar {
-    top: 262px !important;
-}
-
-.sixR #firstButtons {
-    top: 431px;
-}
-
-.sixR #warning {
-    top: 400px !important;
+    width:  66px;
+    height: 66px;
 }
 
 .buttons {
-    display: none;
     position: absolute;
     left: 72px;
+    top: 442px;
+
+    width: 757px;
+    height: fit-content;
+    flex-wrap: wrap;
+    row-gap: 19px;
+    column-gap: 80px;
 
     display: flex;
     justify-content: center;
-    gap: 80px;
     -webkit-touch-callout: none;
     -webkit-user-select: none; 
      -khtml-user-select: none;
@@ -243,6 +226,15 @@ body {
     justify-content: center;
     transition: 0.3s;
     position: relative;
+}
+
+.optionImage {
+    transition: 0.2s;
+    position: absolute;
+    bottom: 90px;
+    width: 92px;
+    filter: grayscale(1);
+    opacity: 0.5;
 }
 
 .inside {

@@ -152,11 +152,11 @@
     box-shadow: inset -3px -3px 5px 0 #fefefe, inset 3px 3px 5px 0 rgb(222 222 230 / 50%) !important;
 }
 
-.inset_shadow img {
-    width:  72px !important;
-    height: 72px !important;
-    filter: invert(49%) sepia(28%) saturate(546%) hue-rotate(173deg) brightness(90%) contrast(166%);
-    opacity: 0.55;
+.block.inset_shadow img {
+    width:  64px !important;
+    height: 64px !important;
+    filter: none !important;
+    opacity: 1 !important;
 }
 
 .outside_shadow{
